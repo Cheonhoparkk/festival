@@ -11,7 +11,6 @@ public class UserInfoVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int uiNum;
-	//uiId는 카카오에서 받은 code 값
 	private String uiId;
 	private String uiName;
 	private String uiNickname;

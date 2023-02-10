@@ -58,24 +58,18 @@
 
 						</div>
 
-						<!-- 마이리스트 추가 -->
+						<!-- 마이리스트 등록 -->
 						<c:if test="${userInfo eq null}">
 							<div>
 								<!-- 비로그인 상태에서는 로그인 화면으로 이동 -->
-								<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트 추가</button>
+								<button id="mylist-button" onclick="location.href='/views/my-list/'">마이리스트 등록</button>
 							</div>
 						</c:if>
 						<c:if test="${userInfo ne null}">
-							<c:if test="${myList eq null}">
-								<div>
-									<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 추가</button>
-								</div>
-							</c:if>
-							<c:if test="${myList ne null}">
-								<div>
-									<button id="mylist-button" onclick="insertMyList()" id="insertMyList">마이리스트 취소</button>
-								</div>
-							</c:if>
+							<div id="myListChangeButton">
+								<!-- 로그인 상태에서는 정상 작동 -->
+								<!-- 마이리스트에 있으면 마이리스트 취소 버튼, 없으면 마이리스트 등록 버튼 -->
+							</div>
 						</c:if>
 						<!-- 관광지 파트 -->
 						<div id="location" class="float-end container">
@@ -111,7 +105,29 @@
 					<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 						<script src="/resources/js/common.js"></script>
 						<script>
-							/* 마이리스트 추가 */
+							/* 마이리스트에 있는지 여부 확인 */
+							function getMyListFiNum(){
+								fetch('/my-lists')
+								.then(function(res){
+									return res.json();
+								})
+								.then(function(myLists){
+									let myListsFiNum = new Array();
+									for(let fesInfo of myLists){
+										myListsFiNum.push(fesInfo.fiNum);	
+									}
+									let html = '';
+									const myListChangeButton = document.querySelector('#myListChangeButton')
+									if(myListsFiNum.includes(${ param.fiNum })){
+										html += '<button id="myListButton" onclick="deleteMyList()">마이리스트 취소</button>'
+									} else {
+										html += '<button id="myListButton" onclick="insertMyList()">마이리스트 등록</button>'
+									}
+									myListChangeButton.innerHTML += html;
+								})
+							}
+							
+							/* 마이리스트 등록 */
 							function insertMyList() {
 								const param = {};
 								param.uiNum = ${ userInfo.uiNum }
@@ -123,18 +139,17 @@
 									},
 									body: JSON.stringify(param)
 								})
-									.then(function (res) {
-										return res.json();
-									})
-									.then(function (data) {
-										console.log(data);
-										if (data === 1) {
-											alert('등록 완료');
-										} else {
-											alert('등록 취소');
-											deleteMyList();
-										}
-									})
+								.then(function (res) {
+									return res.json();
+								})
+								.then(function (data) {
+									if (data === 1) {
+										alert('등록 완료');
+									} else {
+										alert('등록 오류');
+									}
+									location.reload();
+								})
 							}
 
 							/* 마이리스트 삭제 */
@@ -142,16 +157,17 @@
 								fetch('/my-lists/${param.fiNum}', {
 									method: 'DELETE'
 								})
-									.then(function (res) {
-										console.log(res);
-										return res.json();
-									})
-									.then(function (data) {
-										if (data === 1) {
-										} else {
-											alert('취소 실패!');
-										}
-									});
+								.then(function (res) {
+									return res.json();
+								})
+								.then(function (data) {
+									if (data === 1) {
+										alert('취소 완료');
+									} else {
+										alert('취소 오류');
+									}
+									location.reload();
+								})
 							}
 
 							function getLikeCount() {
@@ -254,6 +270,7 @@
 							})
 							window.onload = function () {
 								getFestivalItem();
+								getMyListFiNum();
 							}
 
 							async function getFestivalItem() {

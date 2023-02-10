@@ -119,7 +119,6 @@
 			return res.json()
 		})
 		.then(function(data){
-			console.log(data);
 			alert('회원가입이 완료되었습니다.')
 			location.href='/views/user-info/login'
 		})

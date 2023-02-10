@@ -32,7 +32,7 @@ public class MyListController {
 	@Autowired
 	private CheckSessionUserInfo checkSessionUserInfo;
 	
-	//로그인이 돼있어야 마이리스트 전부 불러오기 가능
+	//마이리스트 전부 불러오기
 	@GetMapping("/my-lists")
 	@ResponseBody
 	public List<FestivalInformationVO> getMyLists(@ModelAttribute MyListVO myList, Model model, HttpSession session){
@@ -40,7 +40,7 @@ public class MyListController {
 		return myListService.getMyLists(myList);
 	}
 	
-	//로그인 돼있어야 마이리스트 추가 가능
+	//마이리스트 추가
 	@PostMapping("/my-lists")
 	@ResponseBody
 	public int insertMyList(@RequestBody MyListVO myList, HttpSession session) {
@@ -48,7 +48,7 @@ public class MyListController {
 		return myListService.insertMyList(myList);
 	}
 	
-	//로그인 돼있어야 마이리스트 삭제 가능
+	//마이리스트 삭제
 	@DeleteMapping("/my-lists/{fiNum}")
 	@ResponseBody
 	public int deleteMyList(@PathVariable("fiNum") int fiNum, HttpSession session) {
@@ -57,12 +57,11 @@ public class MyListController {
 		return myListService.deleteMyList(fiNum);
 	}
 	
-	//로그인 돼있어야 마이리스트 선택 삭제 가능
+	//마이리스트 선택 삭제
 	@DeleteMapping("/my-lists")
 	@ResponseBody
 	public int deleteMyLists(@RequestBody MyListVO myList, HttpSession session) {
 		checkSessionUserInfo.checkSession(myList, session);
-		log.info("myList=>{}", myList);
 		return myListService.deleteMyLists(myList.getMlNums());
 	}
 	

@@ -33,10 +33,8 @@
 	}
 	
 	function toggleCheck(obj){
-		console.log(obj);
 		const diNums = document.querySelectorAll('input[name="mlNums"]');
 		for(const mlNum of mlNums){
-			/* console.log(diNum); */
 			diNum.checked = obj.checked;
 		}
 	}
@@ -48,7 +46,6 @@
 		})
 		.then(async function(myLists){
 			if(myLists != 0) {
-				console.log(myLists);
 				let html = '';
 				const getInfo = document.querySelector('#getInfo')
 				for(let fesInfo of myLists){
@@ -58,7 +55,7 @@
 						  + '	</div>\n'
 						  + '	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">\n'
 						  + '		<div class="col p-4 d-flex flex-column position-static">\n'
-						  + '			<strong class="d-inline-block mb-2 text-primary">' + "추가한 날짜 : " + fesInfo.mlDate.substr(0, 4) + '년 ' + fesInfo.mlDate.substr(4, 2) + '월 ' + fesInfo.mlDate.substr(6, 2) + '일' + '</strong>\n'
+						  + '			<strong class="d-inline-block mb-2 text-primary">' + "등록한 날짜 : " + fesInfo.mlDate.substr(0, 4) + '년 ' + fesInfo.mlDate.substr(4, 2) + '월 ' + fesInfo.mlDate.substr(6, 2) + '일' + '</strong>\n'
 						  + '			<h3 id="title" class="mb-0">' + fesInfo.title + '</h3>\n'
 						  + '			<div id="date" class="mb-1 text-muted">' + fesInfo.eventstartdate.substr(0, 4) + '년 ' + fesInfo.eventstartdate.substr(4, 2) + '월 ' + fesInfo.eventstartdate.substr(6, 2) + '일' 
 						  + 				" ~ " + fesInfo.eventenddate.substr(0, 4) + '년 ' + fesInfo.eventenddate.substr(4, 2) + '월 ' + fesInfo.eventenddate.substr(6, 2) + '일' + '</div>\n'
@@ -73,10 +70,9 @@
 				}
 				getInfo.innerHTML += html;
 			} else {
-				console.log(myLists);
 				let html = '';
 				html += '<div id="noInfo" class="col-md-100%">' 
-					  + '<p>아직 추가하신 축제가 없습니다.<br><br>추가는 축제 상세 정보 페이지에서 가능합니다.<br><br>가고 싶은 축제들을 마이리스트에 담아보세요!</p>'
+					  + '<p>아직 등록하신 축제가 없습니다.<br><br>등록은 축제 상세 정보 페이지에서 가능합니다.<br><br>가고 싶은 축제들을 마이리스트에 담아보세요!</p>'
 					  + '</div>\n'
 				getInfo.innerHTML += html;
 			}
@@ -85,12 +81,10 @@
 	
 	function deleteMyList(){
 		const mlNumObjs = document.querySelectorAll('input[name="mlNums"]:checked');
-		console.log(mlNumObjs);
 		const mlNums = [];
 		for(const mlNumObj of mlNumObjs){
 			mlNums.push(mlNumObj.value);
 		}
-		console.log(mlNums);
 		if(mlNums.length===0){
 			alert('선택하세요');
 			return;
@@ -106,11 +100,9 @@
 			body: JSON.stringify(param)
 		})
 		.then(function(res){
-			console.log(res);
 			return res.json();
 		})
 		.then(function(data){
-			console.log(data);
 			if(data>=1){
 				alert('삭제 완료!');
 				location.href='/views/my-list/list'

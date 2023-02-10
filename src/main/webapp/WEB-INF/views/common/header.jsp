@@ -54,11 +54,11 @@
 				<c:if test="${userInfo eq null}">
 					<button class="btn btn-light text-dark me-2"
 						onclick='location.href="/views/user-info/login"'>로그인</button>
-					<button class="btn btn-primary" onclick='location.href="/views/user-info/join"''>회원가입</button>
+					<button class="btn btn-primary" onclick='location.href="/views/user-info/join"'>회원가입</button>
 				</c:if>
 				<c:if test="${userInfo ne null}">
-				<button class="btn btn-light text-dark me-2" onclick=' location.href="/auth/logout"''>로그아웃</button>
-					<button class="btn btn-primary" onclick='location.href="/views/user-info/view"''>회원정보</button>
+				<button class="btn btn-light text-dark me-2" onclick=' location.href="/auth/logout"'>로그아웃</button>
+					<button class="btn btn-primary" onclick='location.href="/views/user-info/view"'>회원정보</button>
 				</c:if>
 			</div>
 		</div>
