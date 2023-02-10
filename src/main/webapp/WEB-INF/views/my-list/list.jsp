@@ -15,7 +15,9 @@
 	<!-- MAIN -->
 	<main>
 		<div class="container">
-			<p><button onclick="deleteMyList()">축제 삭제</button></p>
+			<div class="deleteButton">
+				<p><button onclick="deleteMyList()">축제 삭제</button></p>
+			</div>
 			<div id="getInfo" class="row mb-2">
 				
 			</div>
@@ -45,30 +47,39 @@
 			return res.json();
 		})
 		.then(async function(myLists){
-			console.log(myLists);
-			let html = '';
-			const getInfo = document.querySelector('#getInfo')
-			for(let fesInfo of myLists){
-				html += '<div class="col-md-6">'
-					  + '	<div id="formMyListCheckBox" class="form-check">\n'
-					  + '		<input id="myListCheckBox" class="form-check-input" type="checkbox" name="mlNums" value="' + fesInfo.mlNum + '">\n'
-					  + '	</div>\n'
-					  + '	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">\n'
-					  + '		<div class="col p-4 d-flex flex-column position-static">\n'
-					  + '			<strong class="d-inline-block mb-2 text-primary">' + "추가한 날짜 : " + fesInfo.mlDate.substr(0, 4) + '년 ' + fesInfo.mlDate.substr(4, 2) + '월 ' + fesInfo.mlDate.substr(6, 2) + '일' + '</strong>\n'
-					  + '			<h3 id="title" class="mb-0">' + fesInfo.title + '</h3>\n'
-					  + '			<div id="date" class="mb-1 text-muted">' + fesInfo.eventstartdate.substr(0, 4) + '년 ' + fesInfo.eventstartdate.substr(4, 2) + '월 ' + fesInfo.eventstartdate.substr(6, 2) + '일' 
-					  + 				" ~ " + fesInfo.eventenddate.substr(0, 4) + '년 ' + fesInfo.eventenddate.substr(4, 2) + '월 ' + fesInfo.eventenddate.substr(6, 2) + '일' + '</div>\n'
-					  + '			<p id="addr" class="card-text mb-auto">' + fesInfo.addr1 + '</p>\n'
-					  + '			<a id="moreInfo" href="/views/festivalInfo/viewItem?fiNum=' + fesInfo.fiNum + '" class="stretched-link">축제 정보 더보기</a>\n'
-					  + '		</div>\n'
-					  + '		<div class="col-auto d-none d-lg-block">\n'
-					  + '			<img class="bd-placeholder-img" width="200" height="250" src="' + fesInfo.firstimage + '" >\n'
-					  + '		</div>\n'
-					  + '	</div>\n'
+			if(myLists != 0) {
+				console.log(myLists);
+				let html = '';
+				const getInfo = document.querySelector('#getInfo')
+				for(let fesInfo of myLists){
+					html += '<div class="col-md-6">'
+						  + '	<div id="formMyListCheckBox" class="form-check">\n'
+						  + '		<input id="myListCheckBox" class="form-check-input" type="checkbox" name="mlNums" value="' + fesInfo.mlNum + '">\n'
+						  + '	</div>\n'
+						  + '	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">\n'
+						  + '		<div class="col p-4 d-flex flex-column position-static">\n'
+						  + '			<strong class="d-inline-block mb-2 text-primary">' + "추가한 날짜 : " + fesInfo.mlDate.substr(0, 4) + '년 ' + fesInfo.mlDate.substr(4, 2) + '월 ' + fesInfo.mlDate.substr(6, 2) + '일' + '</strong>\n'
+						  + '			<h3 id="title" class="mb-0">' + fesInfo.title + '</h3>\n'
+						  + '			<div id="date" class="mb-1 text-muted">' + fesInfo.eventstartdate.substr(0, 4) + '년 ' + fesInfo.eventstartdate.substr(4, 2) + '월 ' + fesInfo.eventstartdate.substr(6, 2) + '일' 
+						  + 				" ~ " + fesInfo.eventenddate.substr(0, 4) + '년 ' + fesInfo.eventenddate.substr(4, 2) + '월 ' + fesInfo.eventenddate.substr(6, 2) + '일' + '</div>\n'
+						  + '			<p id="addr" class="card-text mb-auto">' + fesInfo.addr1 + '</p>\n'
+						  + '			<a id="moreInfo" href="/views/festivalInfo/viewItem?fiNum=' + fesInfo.fiNum + '" class="stretched-link">축제 정보 더보기</a>\n'
+						  + '		</div>\n'
+						  + '		<div class="col-4 d-none d-lg-block">\n'
+						  + '			<img id="image-thumbnail" class="bd-placeholder-img" src="' + fesInfo.firstimage + '" >\n'
+						  + '		</div>\n'
+						  + '	</div>\n'
+						  + '</div>\n'
+				}
+				getInfo.innerHTML += html;
+			} else {
+				console.log(myLists);
+				let html = '';
+				html += '<div id="noInfo" class="col-md-100%">' 
+					  + '<p>아직 추가하신 축제가 없습니다.<br><br>추가는 축제 상세 정보 페이지에서 가능합니다.<br><br>가고 싶은 축제들을 마이리스트에 담아보세요!</p>'
 					  + '</div>\n'
+				getInfo.innerHTML += html;
 			}
-			getInfo.innerHTML += html;
 		});
 	}
 	
