@@ -9,11 +9,14 @@
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/login.css" >
+<link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-pen.css">
 </head>
 <body class="text-center">
 	<main class="form-signin w-100 m-auto">
-		<!-- 로고 이미지 -->
-		<img class="mb-4" src="" alt="" width="72" height="57">
+		<!-- 로고, 클릭시 메인 페이지로 이동-->
+		<div class="whatdoLogo">
+			<a href="/" class="whatdo">오늘 뭐하지?</a>
+		</div>
 		
 		<!-- 비로그인 상태에서 나오는 메시지 -->
 		<P>${msg}</P>

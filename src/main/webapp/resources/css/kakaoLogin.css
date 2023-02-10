@@ -23,3 +23,15 @@ body {
 .form-signin .form-floating #uiPwd {
   margin-bottom: 10px;
 }
+
+.whatdoLogo {
+   padding-bottom: 20px;
+}
+
+.whatdo {
+   font-family: 'NanumPen';
+   color : #fd70a8;
+   font-size : 38px;
+   font-weight: 200;
+   text-decoration: none;
+}

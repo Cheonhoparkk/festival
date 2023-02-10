@@ -9,11 +9,14 @@
 <link rel="stylesheet" href="/resources/css/common.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/join.css" >
+<link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-pen.css">
 </head>
 <body class="text-center">
 	<main class="form-signin w-100 m-auto">
-		<!-- 로고 이미지, 클릭시 메인 페이지로 이동 -->
-		<a href="/"><img class="mb-4" src="" alt="" width="72" height="57"></a>
+		<!-- 로고, 클릭시 메인 페이지로 이동-->
+		<div class="whatdoLogo">
+			<a href="/" class="whatdo">오늘 뭐하지?</a>
+		</div>
 		
 		<!-- 일반 회원가입 -->
 		<h1 class="h4 mb-3 fw-normal">일반 회원가입</h1>

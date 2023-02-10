@@ -31,3 +31,15 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.whatdoLogo {
+   padding-bottom: 20px;
+}
+
+.whatdo {
+   font-family: 'NanumPen';
+   color : #fd70a8;
+   font-size : 38px;
+   font-weight: 200;
+   text-decoration: none;
+}

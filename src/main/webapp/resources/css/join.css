@@ -19,3 +19,15 @@ body {
 small {
     font-size: 0.7em;
 }
+
+.whatdoLogo {
+   padding-bottom: 40px;
+}
+
+.whatdo {
+   font-family: 'NanumPen';
+   color : #fd70a8;
+   font-size : 38px;
+   font-weight: 200;
+   text-decoration: none;
+}
