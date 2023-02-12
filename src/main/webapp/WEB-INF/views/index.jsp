@@ -18,6 +18,23 @@
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
 				<!-- MAIN -->
 				<main>
+				<!-- 소개 -->
+				<div class="section">
+					<div class="container">
+						<div class="row text-left mb-5">
+							<div class="col-lg-6">
+								<p class="text-black-50">Point 01 전국 축제, 지역별 축제, 인기 축제 등 통합정보제공</p>
+								<p class="text-black-50">Point 02 진행중 또는 진행예정 축제정보 제공</p>
+								<p class="text-black-50">Point 03 축제 인근 즐길거리 정보 제공</p>
+							</div>
+							<div class="col-lg-6">
+								<p class="text-black-50">지역별로 축제 및 체험정보를 쉽게 찾을 수 있습니다!</p>
+								<p class="text-black-50">축제 인근 관광지도 둘러보세요!</p>
+								<p class="text-black-50">마음에 드는 축제를 마이페이지에 담아보세요!</p>
+							</div>
+						</div>
+					</div>
+				</div>
 					<div class="container align-items-center">
 						<div id="carouselFestivalCaptions" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-indicators"></div>
@@ -35,28 +52,6 @@
 						</div>
 					</div>
 				</main>
-				<!-- 소개 -->
-				<div class="section">
-					<div class="container">
-						<div class="row text-left mb-5">
-							<div class="col-lg-6">
-								<p class="text-black-50">지역별로 축제 및 체험정보를 쉽게 찾을 수 있습니다!</p>
-								<p class="text-black-50">축제 인근 관광지도 둘러보세요!</p>
-								<p class="text-black-50">마음에 드는 축제를 마이페이지에 담아보세요!</p>
-							</div>
-							<div class="col-lg-6">
-
-								<p class="text-black-50">Point 01 전국 축제, 지역별 축제, 인기 축제 등 통합정보
-									제공</p>
-								<p class="text-black-50">Point 02 진행중 또는 진행예정 축제정보 제공</p>
-								<p class="text-black-50">Point 03 축제 인근 즐길거리 정보 제공</p>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-
 				<!-- FOOTER -->
 				<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 					<script src="/resources/js/common.js"></script>
