@@ -88,7 +88,7 @@
 									<input type="hidden" name="fiNum" value="${param.fiNum}" /> <input
 										type="text" class="form-control" id="ciContent" name="ciContent"
 										placeholder="내용을 입력하세요."> <span class="input-group-btn">
-										<button class="btn btn-default" type="button"
+										<button class="btn btn-default" id="insertComment" type="button"
 											name="commentInsertBtn">등록</button>
 									</span>
 								</div>
@@ -447,8 +447,8 @@
 							            $.each(data, function(key, value){ 
 							                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
 							                a += '<div class="commentInfo'+value.ciNum+'">'+'댓글번호 : '+value.ciNum+' / 작성자 : '+value.ciWriter;
-							                a += '<a onclick="commentUpdate('+value.ciNum+',\''+value.ciContent+'\');"> 수정 </a>';
-							                a += '<a onclick="commentDelete('+value.ciNum+');"> 삭제 </a> </div>';
+							                a += '<a onclick="commentUpdate('+value.ciNum+',\''+value.ciContent+'\');" style="color: blue;"> 수정 </a>';
+							                a += '<a onclick="commentDelete('+value.ciNum+');" style="color: blue;"> 삭제 </a> </div>';
 							                a += '<div class="commentContent'+value.ciNum+'"> <p> 내용 : '+value.ciContent +'</p>';
 							                a += '</div></div>';
 							            });
@@ -495,7 +495,7 @@
 							        type : 'post',
 							        data : {'ciContent' : updateContent, 'ciNum' : ciNum},
 							        success : function(data){
-							            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+							            if(data == 1) commentList(fiNum); //댓글 수정후 목록 출력 
 							        }
 							    });
 							}

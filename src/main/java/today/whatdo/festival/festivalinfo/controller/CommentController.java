@@ -32,7 +32,7 @@ public class CommentController {
 		CommentVO comment = new CommentVO();
 		comment.setFiNum(fiNum);
 		comment.setCiContent(ciContent);
-		comment.setCiWriter("test");
+		comment.setCiWriter("익명");
 		
 		return commentService.commentInsert(comment);
 	}
