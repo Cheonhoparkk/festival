@@ -15,23 +15,23 @@ public class CommentService {
 	private CommentMapper commentMapper;
 	
 	//댓글 작성
-	public int commentWrite(CommentVO vo) {
-		return commentMapper.commentWrite(vo);
+	public int commentInsert(CommentVO vo) {
+		return commentMapper.commentInsert(vo);
 	}
 	
-	//댓글 조회
-	public List<CommentVO> commentList(int fiNum) {
-		return commentMapper.commentList(fiNum);
+	//댓글 리스트
+	public List<CommentVO> commentList(CommentVO vo) {
+		return commentMapper.commentList(vo);
 	}
 	
 	//댓글 수정
-	public int commentModify(CommentVO commentVO) {
-		return commentMapper.commentModify(commentVO);
+	public int commentUpdate(CommentVO vo) {
+		return commentMapper.commentUpdate(vo);
 	}
 	
 	//댓글 삭제
-	public void commentDelete(CommentVO commentVO) {
-		commentMapper.commentDelete(commentVO);
+	public int commentDelete(int ciNum) {
+		return commentMapper.commentDelete(ciNum);
 		
 	}
 	

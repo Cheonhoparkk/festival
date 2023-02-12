@@ -81,25 +81,23 @@
 
 						<!-- 댓글 시작 -->
 						<hr />
-						<!-- 댓글 리스트 -->
-						<%@ include file="/WEB-INF/views/comment/list.jsp" %>
-							<div>
-								<form method="post" action="/comment/write">
+						<div class="container">
+							<label for="content">comment</label>
+							<form name="commentInsertForm">
+								<div class="input-group">
+									<input type="hidden" name="fiNum" value="${param.fiNum}" /> <input
+										type="text" class="form-control" id="ciContent" name="ciContent"
+										placeholder="내용을 입력하세요."> <span class="input-group-btn">
+										<button class="btn btn-default" type="button"
+											name="commentInsertBtn">등록</button>
+									</span>
+								</div>
+							</form>
+						</div>
 
-									<p>
-										<label>댓글 작성자</label> <input type="text" name="ciWriter">
-									</p>
-									<p>
-										<textarea rows="5" cols="50" name="ciContent"></textarea>
-									</p>
-									<p>
-										<input type="hidden" name="fiNum" value="${param.fiNum}">
-										<button type="submit">댓글 작성</button>
-									</p>
-								</form>
-
-							</div>
-							<!-- 댓글 끝 -->
+						<div class="container">
+				        <div class="commentList"></div>
+				    </div>
 					</main>
 					<!-- FOOTER -->
 					<%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -430,6 +428,95 @@
 									myModal.style.display = "none";
 								}
 							}
+							
+							var fiNum = '${viewItem.fiNum}';
+
+							$('[name=commentInsertBtn]').click(function(){
+								var insertData = $('[name=commentInsertForm]').serialize();
+								commentInsert(insertData);
+							});
+
+							//댓글 목록
+							function commentList(){
+							    $.ajax({
+							        url : '/comment/list',
+							        type : 'get',
+							        data : {'fiNum':fiNum},
+							        success : function(data){
+							            var a =''; 
+							            $.each(data, function(key, value){ 
+							                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+							                a += '<div class="commentInfo'+value.ciNum+'">'+'댓글번호 : '+value.ciNum+' / 작성자 : '+value.ciWriter;
+							                a += '<a onclick="commentUpdate('+value.ciNum+',\''+value.ciContent+'\');"> 수정 </a>';
+							                a += '<a onclick="commentDelete('+value.ciNum+');"> 삭제 </a> </div>';
+							                a += '<div class="commentContent'+value.ciNum+'"> <p> 내용 : '+value.ciContent +'</p>';
+							                a += '</div></div>';
+							            });
+							            
+							            $(".commentList").html(a);
+							        }
+							    });
+							}
+							 
+							//댓글 등록
+							function commentInsert(insertData){
+							    $.ajax({
+							        url : '/comment/insert',
+							        type : 'post',
+							        data : insertData,
+							        success : function(data){
+							            if(data == 1) {
+							                commentList(); //댓글 작성 후 댓글 목록 reload
+							                $('[name=ciContent]').val('');
+							            }
+							        }
+							    });
+							}
+							 
+							//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+							function commentUpdate(ciNum, ciContent){
+							    var a ='';
+							    
+							    a += '<div class="input-group">';
+							    a += '<input type="text" class="form-control" name="content_'+ciNum+'" value="'+ciContent+'"/>';
+							    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+ciNum+');">수정</button> </span>';
+							    a += '</div>';
+							    
+							    $('.commentContent'+ciNum).html(a);
+							    
+							}
+							 
+							//댓글 수정
+							function commentUpdateProc(ciNum){
+							    var updateContent = $('[name=content_'+ciNum+']').val();
+							    
+							    $.ajax({
+							        url : '/comment/update',
+							        type : 'post',
+							        data : {'ciContent' : updateContent, 'ciNum' : ciNum},
+							        success : function(data){
+							            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+							        }
+							    });
+							}
+							 
+							//댓글 삭제 
+							function commentDelete(ciNum){
+							    $.ajax({
+							        url : '/comment/delete/'+ciNum,
+							        type : 'post',
+							        success : function(data){
+							            if(data == 1) commentList(fiNum); //댓글 삭제후 목록 출력 
+							        }
+							    });
+							}
+							 
+							 
+							 
+							 
+							$(document).ready(function(){
+							    commentList(); //페이지 로딩시 댓글 목록 출력 
+							});
 						</script>
 			</body>
 

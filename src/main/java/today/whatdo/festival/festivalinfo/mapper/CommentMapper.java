@@ -6,13 +6,15 @@ import today.whatdo.festival.festivalinfo.vo.commentInfo.CommentVO;
 
 public interface CommentMapper {
 
-	//댓글 조회
-	List<CommentVO> commentList(int fiNum);
+	//댓글 갯수
+	int commentCount();
+	//댓글 리스트
+	List<CommentVO> commentList(CommentVO vo);
 	//댓글 작성
-	int commentWrite(CommentVO vo);
+	int commentInsert(CommentVO vo);
 	//댓글 수정
-	int commentModify(CommentVO vo);
+	int commentUpdate(CommentVO vo);
 	//댓글 삭제
-	int commentDelete(CommentVO vo);
+	int commentDelete(int ciNum);
 	
 }
