@@ -55,7 +55,8 @@
 		.then(function(data){
 			if(data){
 				data=JSON.parse(data);
-				if(data.uiId){
+				if(data.uiName){
+					alert(data.uiName + '님, 안녕하세요.');
 					location.href='/';
 					return;
 				}
