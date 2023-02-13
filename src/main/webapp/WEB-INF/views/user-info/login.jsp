@@ -53,7 +53,7 @@
 	function loginWithKakao() {
 	    Kakao.Auth.authorize({
 	    	/* 나중에 localhost를 엘라스틱IP로 변경해야한다. */
-	      redirectUri: 'http://localhost/auth/oauth',
+	      redirectUri: 'http://43.201.141.51/auth/oauth',
 	    });
 	}
 	
