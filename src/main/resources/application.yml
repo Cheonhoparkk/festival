@@ -7,7 +7,7 @@ spring:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mariadb://database-1.cqwhokv1vicr.ap-northeast-2.rds.amazonaws.com:3306/THIRD_TEAM
     username: FEELGOOD
-    password: RLQNSWHGDMA!
+    password: 123456
     hikari:
       minimum-idle: 2
       maximum-pool-size: 3
